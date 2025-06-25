@@ -26,3 +26,8 @@ export const getTopRated = async () => {
   const res = await instance.get<MovieResponse>(`/movie/top_rated?sort_by=vote_average.desc`);
   return res.data;
 }
+
+export const getTrending = async () => {
+  const res = await instance.get<MovieResponse>("/trending/movie/day");
+  return res.data;
+}
