@@ -23,7 +23,7 @@ const instance = axios.create({
 });
 
 export const getTopRated = async () => {
-  const res = await instance.get<MovieResponse>(`/movie/top_rated?sort_by=vote_average.desc`);
+  const res = await instance.get<MovieResponse>("/movie/top_rated");
   return res.data;
 }
 
