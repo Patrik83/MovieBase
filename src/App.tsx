@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
-import RatedMoviesPage from "./RatedMoviesPage";
-import TrendingMoviesPage from "./TrendingMoviesPage";
+import RatedMoviesPage from "./pages/RatedMoviesPage";
+import TrendingMoviesPage from "./pages/TrendingMoviesPage";
 
 function App() {
   return (

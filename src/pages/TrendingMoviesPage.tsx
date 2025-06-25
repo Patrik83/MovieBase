@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getTrending } from "./services/TMDB_API";
+import { getTrending } from "../services/TMDB_API";
 
 const TrendingMoviesPage = () => {
   const { data: movies, error, isError, isLoading } = useQuery({

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getTopRated } from "./services/TMDB_API"
+import { getTopRated } from "../services/TMDB_API"
 
 const RatedMoviesPage = () => {
   const { data: movies, error, isError, isLoading } = useQuery({
