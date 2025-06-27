@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTrending } from "../services/TMDB_API";
 import { useState } from "react";
+import Pagination from "../components/Pagination";
 
 const TrendingMoviesPage = () => {
   const [page, setPage] = useState(1);
@@ -38,25 +39,14 @@ const TrendingMoviesPage = () => {
           ))}
         </div>
 
-        <div className="flex justify-between px-4 pt-5">
-          <button 
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer" 
-            onClick={() => setPage(prevPage => prevPage - 1)}
-            disabled={page === 1}
-          >
-            Prev
-          </button>
-
-          <p>Page: {movies.page} / {movies.total_pages}</p>
-
-          <button 
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer" 
-            onClick={() => setPage(prevPage => prevPage + 1)}
-            disabled={page === movies.total_pages}
-          >
-            Next
-          </button>
-        </div>
+        <Pagination 
+          firstPage={page === 1}
+          lastPage={page === movies.total_pages}
+          currentPage={movies.page}
+          totalPages={movies.total_pages}
+          onPrevPage={() => setPage(prevValue => prevValue - 1)}
+          onNextPage={() => setPage(prevValue => prevValue + 1)}
+        />
       </>
     )}
   </>
