@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
+import burger from "../assets/icons/burger.svg";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-black">
+    <nav className="bg-white">
       <div className="@container max-w-screen-xl mx-auto">
-        <div className="h-16 items-center flex text-white">
-          <div className="px-4 w-full text-right">
-            <p className="block sm:hidden" onClick={() => setIsOpen(!isOpen)}>Menu</p>
+        <div className="h-16 items-center flex text-black">
+          <div className="px-4 w-full flex justify-end sm:hidden">
+            <img 
+              onClick={() => setIsOpen(!isOpen)} 
+              src={burger} alt="Menu" 
+              className="w-8 h-8" 
+            />
           </div>
 
           {/* desktop mode */}
