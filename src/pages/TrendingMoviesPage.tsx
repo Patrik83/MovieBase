@@ -1,10 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTrending } from "../services/TMDB_API";
+import { useState } from "react";
 
 const TrendingMoviesPage = () => {
+  const [page, setPage] = useState(1);
+
   const { data: movies, error, isError, isLoading } = useQuery({
-    queryKey: (["trendingMovies"]),
-    queryFn: () => getTrending(),
+    queryKey: (["trendingMovies", page]),
+    queryFn: () => getTrending(page),
   })
 
   return (
@@ -33,6 +36,26 @@ const TrendingMoviesPage = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="flex justify-between px-4 pt-5">
+          <button 
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer" 
+            onClick={() => setPage(prevPage => prevPage - 1)}
+            disabled={page === 1}
+          >
+            Prev
+          </button>
+
+          <p>Page: {movies.page} / {movies.total_pages}</p>
+
+          <button 
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer" 
+            onClick={() => setPage(prevPage => prevPage + 1)}
+            disabled={page === movies.total_pages}
+          >
+            Next
+          </button>
         </div>
       </>
     )}
