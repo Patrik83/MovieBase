@@ -10,6 +10,8 @@ interface Movie {
 
 interface MovieResponse {
   results: Movie[];
+  page: number;
+  total_pages: number;
 }
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY as string;
@@ -22,12 +24,20 @@ const instance = axios.create({
   },
 });
 
-export const getTopRated = async () => {
-  const res = await instance.get<MovieResponse>("/movie/top_rated");
+export const getTopRated = async (pageNumber: number) => {
+  const res = await instance.get<MovieResponse>("/movie/top_rated", {
+    params: {
+      page: pageNumber,
+    }
+  });
   return res.data;
 }
 
-export const getTrending = async () => {
-  const res = await instance.get<MovieResponse>("/trending/movie/day");
+export const getTrending = async (pageNumber: number) => {
+  const res = await instance.get<MovieResponse>("/trending/movie/day", {
+    params: {
+      page: pageNumber,
+    }
+  });
   return res.data;
 }
