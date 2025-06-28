@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import { getTopRated } from "../services/TMDB_API"
 import { useState } from "react"
 import Pagination from "../components/Pagination";
+import ErrorAlert from "../components/ErrorAlert";
 
 const RatedMoviesPage = () => {
   const [page, setPage] = useState(1);
@@ -13,7 +14,7 @@ const RatedMoviesPage = () => {
 
   return (
     <>
-      {isError && <p>{error.message}</p>}
+      {isError && <ErrorAlert message={error.message} />}
 
       {isLoading && <p>Movies are loading...</p>}
 
