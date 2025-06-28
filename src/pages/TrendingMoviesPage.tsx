@@ -3,6 +3,7 @@ import { getTrending } from "../services/TMDB_API";
 import { useState } from "react";
 import Pagination from "../components/Pagination";
 import ErrorAlert from "../components/ErrorAlert";
+import Spinner from "../components/Spinner";
 
 const TrendingMoviesPage = () => {
   const [page, setPage] = useState(1);
@@ -16,7 +17,7 @@ const TrendingMoviesPage = () => {
     <>
       {isError && <ErrorAlert message={error.message} />}
 
-      {isLoading && <p>Movies are loading...</p>}
+      {isLoading && <Spinner />}
 
       {movies && (
         <>

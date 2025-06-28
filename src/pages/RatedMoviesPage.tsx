@@ -3,6 +3,7 @@ import { getTopRated } from "../services/TMDB_API"
 import { useState } from "react"
 import Pagination from "../components/Pagination";
 import ErrorAlert from "../components/ErrorAlert";
+import Spinner from "../components/Spinner";
 
 const RatedMoviesPage = () => {
   const [page, setPage] = useState(1);
@@ -16,7 +17,7 @@ const RatedMoviesPage = () => {
     <>
       {isError && <ErrorAlert message={error.message} />}
 
-      {isLoading && <p>Movies are loading...</p>}
+      {isLoading && <Spinner />}
 
       {movies && (
         <>
