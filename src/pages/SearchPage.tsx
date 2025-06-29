@@ -1,11 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { searchMovie } from "../services/TMDB_API";
 import { useSearchParams } from "react-router";
-import { useState } from "react";
 
 const SearchPage = () => {
-  const [inputValue, setInputValue] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   
   const query = searchParams.get("query") ?? "";
 
@@ -13,30 +11,9 @@ const SearchPage = () => {
     queryKey: ["query", query],
     queryFn: () => searchMovie(query),
   })
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    setSearchParams({ query: inputValue });
-  }
   
   return (
     <>
-      <div className="flex justify-end px-4">
-        <form onSubmit={handleSubmit}>
-          <input 
-            type="text" 
-            onChange={e => setInputValue(e.target.value)}
-            value={inputValue}
-            className="shadow appearance-none border rounded w-sm py-2 px-3 text-gray-700"
-          />
-          <button 
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >Search</button>
-        </form>
-      </div>
-
       {search && (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 px-4 pt-3 min-w-[400px]">
           {search.results.map(result => (

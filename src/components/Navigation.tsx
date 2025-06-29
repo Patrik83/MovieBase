@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
 import burger from "../assets/icons/burger.svg";
+import Search from "./Search";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +9,7 @@ const Navigation = () => {
   return (
     <nav className="bg-white">
       <div className="@container max-w-screen-xl mx-auto">
-        <div className="h-16 items-center flex text-black">
+        <div className="h-16 items-center flex justify-between text-black">
           <div className="px-4 w-full flex justify-end sm:hidden">
             <img 
               onClick={() => setIsOpen(!isOpen)} 
@@ -22,6 +23,9 @@ const Navigation = () => {
             <NavLink to={"/trending"} className="px-4">Trending</NavLink>
             <NavLink to={"/rated"} className="px-4">Rated</NavLink>
           </div>
+
+          {/* search field */}
+          <Search />
         </div>
 
         {/* mobile mode */}
@@ -30,7 +34,7 @@ const Navigation = () => {
             <NavLink to={"/trending"} className="px-4 block">Trending</NavLink>
             <NavLink to={"/rated"} className="px-4 block">Rated</NavLink>
           </div>
-        )}      
+        )}
       </div>
     </nav>
   )
