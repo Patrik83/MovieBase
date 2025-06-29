@@ -12,8 +12,11 @@ const Search = () => {
   }
 
   return (
-    <div className="px-4">
-      <form onSubmit={handleSubmit}>
+    <div>
+      <form 
+        onSubmit={handleSubmit}
+        className="flex flex-row items-stretch gap-2 w-full pt-2 pe-4"
+      >
         <input 
           type="text" 
           onChange={e => setInputValue(e.target.value)}

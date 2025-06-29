@@ -9,7 +9,7 @@ const Navigation = () => {
   return (
     <nav className="bg-white">
       <div className="@container max-w-screen-xl mx-auto">
-        <div className="h-16 items-center flex justify-between text-black">
+        <div className="flex flex-col w-full px-4 gap-2 sm:flex-row sm:justify-between sm:px-0">
           <div className="px-4 w-full flex justify-end sm:hidden">
             <img 
               onClick={() => setIsOpen(!isOpen)} 
@@ -19,7 +19,7 @@ const Navigation = () => {
           </div>
 
           {/* desktop mode */}
-          <div className="hidden sm:block">
+          <div className="hidden sm:flex sm:items-center">
             <NavLink to={"/trending"} className="px-4">Trending</NavLink>
             <NavLink to={"/rated"} className="px-4">Rated</NavLink>
           </div>
@@ -30,7 +30,7 @@ const Navigation = () => {
 
         {/* mobile mode */}
         {isOpen && (
-          <div className="block sm:hidden bg-gray-400">
+          <div className="flex flex-col gap-1 sm:hidden bg-gray-300">
             <NavLink to={"/trending"} className="px-4 block">Trending</NavLink>
             <NavLink to={"/rated"} className="px-4 block">Rated</NavLink>
           </div>
