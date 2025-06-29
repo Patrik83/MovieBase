@@ -8,7 +8,7 @@ const Search = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    navigate("/search?query=" + inputValue);
+    navigate(`/search?query=${inputValue}&page=1`);
   }
 
   return (

@@ -2,13 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { searchMovie } from "../services/TMDB_API";
 import { useSearchParams } from "react-router";
 import Pagination from "../components/Pagination";
-import { useState } from "react";
 
 const SearchPage = () => {
-  const [searchParams] = useSearchParams();
-  const [page, setPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const query = searchParams.get("query") ?? "";
+  const page = Number(searchParams.get("page")) || 1;
 
   const { data: search } = useQuery({
     queryKey: ["query", query, page],
@@ -43,8 +42,14 @@ const SearchPage = () => {
             lastPage={page === search.total_pages} 
             currentPage={search.page}
             totalPages={search.total_pages}
-            onPrevPage={() => setPage(prevValue => prevValue - 1)}
-            onNextPage={() => setPage(prevValue => prevValue + 1)}
+            onPrevPage={() => {
+              const previousPage = page - 1;
+              setSearchParams({ query, page: String(previousPage) });
+            }}
+            onNextPage={() => {
+              const nextPage = page + 1;
+              setSearchParams({ query, page: String(nextPage) });
+            }}
           />
         </>
       )}

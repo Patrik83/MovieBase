@@ -1,12 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTrending } from "../services/TMDB_API";
-import { useState } from "react";
 import Pagination from "../components/Pagination";
 import ErrorAlert from "../components/ErrorAlert";
 import Spinner from "../components/Spinner";
+import { useSearchParams } from "react-router";
 
 const TrendingMoviesPage = () => {
-  const [page, setPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const page = Number(searchParams.get("page")) || 1;
 
   const { data: movies, error, isError, isLoading } = useQuery({
     queryKey: (["trendingMovies", page]),
@@ -46,8 +48,14 @@ const TrendingMoviesPage = () => {
             lastPage={page === movies.total_pages}
             currentPage={movies.page}
             totalPages={movies.total_pages}
-            onPrevPage={() => setPage(prevValue => prevValue - 1)}
-            onNextPage={() => setPage(prevValue => prevValue + 1)}
+            onPrevPage={() => {
+              const previousPage = page - 1;
+              setSearchParams({ page: String(previousPage) });
+            }}
+            onNextPage={() => {
+              const nextPage = page + 1;
+              setSearchParams({ page: String(nextPage) });
+            }}
           />
         </>
       )}
