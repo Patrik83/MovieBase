@@ -12,6 +12,7 @@ interface MovieResponse {
   results: Movie[];
   page: number;
   total_pages: number;
+  total_results: number
   query: string;
 }
 
@@ -43,10 +44,11 @@ export const getTrending = async (pageNumber: number) => {
   return res.data;
 }
 
-export const searchMovie = async (searchQuery: string) => {
+export const searchMovie = async (searchQuery: string, pageNumber: number) => {
   const res = await instance.get<MovieResponse>("/search/movie", {
     params: {
       query: searchQuery,
+      page: pageNumber,
     }
   });
   return res.data;
