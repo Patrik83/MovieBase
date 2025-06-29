@@ -12,6 +12,7 @@ interface MovieResponse {
   results: Movie[];
   page: number;
   total_pages: number;
+  query: string;
 }
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY as string;
@@ -37,6 +38,15 @@ export const getTrending = async (pageNumber: number) => {
   const res = await instance.get<MovieResponse>("/trending/movie/day", {
     params: {
       page: pageNumber,
+    }
+  });
+  return res.data;
+}
+
+export const searchMovie = async (searchQuery: string) => {
+  const res = await instance.get<MovieResponse>("/search/movie", {
+    params: {
+      query: searchQuery,
     }
   });
   return res.data;
