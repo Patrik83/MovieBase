@@ -15,13 +15,13 @@ const Search = () => {
     <div>
       <form 
         onSubmit={handleSubmit}
-        className="flex gap-2 pe-0 sm:pe-4 sm:pt-2"
+        className="flex gap-2 pe-0 pt-2 sm:pe-2"
       >
         <input 
           type="text" 
           onChange={e => setInputValue(e.target.value)}
           value={inputValue}
-          className="border rounded w-sm text-gray-700"
+          className="border rounded sm:w-lg text-gray-700"
         />
         <button 
           type="submit"
