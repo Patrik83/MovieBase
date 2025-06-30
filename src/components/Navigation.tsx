@@ -7,10 +7,10 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-white">
+    <nav>
       <div className="@container max-w-screen-xl mx-auto">
-        <div className="flex flex-col w-full px-4 gap-2 sm:flex-row sm:justify-between sm:px-0">
-          <div className="px-4 w-full flex justify-end sm:hidden">
+        <div className="flex flex-col px-4 gap-2 sm:flex-row sm:justify-between sm:px-0">
+          <div className="w-full flex justify-end sm:hidden">
             <img 
               onClick={() => setIsOpen(!isOpen)} 
               src={burger} alt="Menu" 
@@ -19,9 +19,9 @@ const Navigation = () => {
           </div>
 
           {/* desktop mode */}
-          <div className="hidden sm:flex sm:items-center">
-            <NavLink to={"/trending"} className="px-4">Trending</NavLink>
-            <NavLink to={"/rated"} className="px-4">Rated</NavLink>
+          <div className="hidden sm:flex sm:items-center px-4 gap-7">
+            <NavLink to={"/trending"}>Trending</NavLink>
+            <NavLink to={"/rated"}>Rated</NavLink>
           </div>
 
           {/* search field */}
@@ -30,9 +30,9 @@ const Navigation = () => {
 
         {/* mobile mode */}
         {isOpen && (
-          <div className="flex flex-col gap-1 sm:hidden bg-gray-300">
-            <NavLink to={"/trending"} className="px-4 block">Trending</NavLink>
-            <NavLink to={"/rated"} className="px-4 block">Rated</NavLink>
+          <div className="flex flex-col gap-1 sm:hidden bg-gray-300 px-4">
+            <NavLink to={"/trending"}>Trending</NavLink>
+            <NavLink to={"/rated"}>Rated</NavLink>
           </div>
         )}
       </div>
