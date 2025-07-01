@@ -1,5 +1,10 @@
 import axios from "axios";
 
+interface Genre {
+  id: number;
+  name: string;
+}
+
 interface Movie {
   id: number;
   title: string;
@@ -10,6 +15,7 @@ interface Movie {
 
 interface MovieResponse {
   results: Movie[];
+  genres: Genre[];
   page: number;
   total_pages: number;
   total_results: number
@@ -52,4 +58,9 @@ export const searchMovie = async (searchQuery: string, pageNumber: number) => {
     }
   });
   return res.data;
+}
+
+export const getGenres = async () => {
+  const res = await instance.get<MovieResponse>("/genre/movie/list");
+  return res.data.genres;
 }
