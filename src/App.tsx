@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router";
-import RatedMoviesPage from "./pages/RatedMoviesPage";
-import TrendingMoviesPage from "./pages/TrendingMoviesPage";
 import Navigation from "./components/Navigation";
+import RatedMoviesPage from "./pages/RatedMoviesPage";
 import SearchPage from "./pages/SearchPage";
+import TrendingMoviesPage from "./pages/TrendingMoviesPage";
 
 function App() {
   return (
-    <>
+    <div style={{backgroundColor: "#212121"}}>
       <Navigation />
       
       <div className="@container max-w-screen-xl mx-auto">
@@ -16,7 +16,7 @@ function App() {
           <Route path="/search" element={<SearchPage /> } />
         </Routes>
       </div>
-    </>
+    </div>
   )
 }
 

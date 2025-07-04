@@ -21,11 +21,11 @@ const Search = () => {
           type="text" 
           onChange={e => setInputValue(e.target.value)}
           value={inputValue}
-          className="border rounded sm:w-lg text-gray-700"
+          className="border rounded sm:w-lg text-black bg-gray-300 focus:outline-none pl-2"
         />
         <button 
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
         >Search</button>
       </form>
     </div>

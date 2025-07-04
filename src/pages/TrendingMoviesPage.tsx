@@ -28,15 +28,15 @@ const TrendingMoviesPage = () => {
             {movies.results.map(movie => (
               <div key={movie.id}>
                 <img
-                  className="w-full"
+                  className="w-full rounded-r-3xl"
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   alt=""
                 />
-                <div className="px-1 py-0">
-                  <h2 className="font-bold">{movie.title}</h2>
+                <div className="px-0 py-1 pb-5">
+                  <h2 className="font-bold text-gray-200">{movie.title}</h2>
                   <div className="flex justify-between">
-                    <p className="text-gray-700 text-sm">{movie.release_date}</p>
-                    <p className="text-gray-700 text-sm">Vote({movie.vote_count})</p>
+                    <p className="text-gray-400 text-sm">{movie.release_date}</p>
+                    <p className="text-gray-400 text-sm">Vote({movie.vote_count})</p>
                   </div>
                 </div>
               </div>

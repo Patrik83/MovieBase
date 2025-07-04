@@ -22,15 +22,15 @@ const SearchPage = () => {
             {search.results.map(result => (
               <div key={result.id}>
                 <img
-                  className="w-full"
+                  className="w-full rounded-r-3xl"
                   src={`https://image.tmdb.org/t/p/w500/${result.poster_path}`}
                   alt=""
                 />
-                <div className="px-1 py-0">
-                  <h2 className="font-bold">{result.title}</h2>
+                <div className="px-0 py-1 pb-5">
+                  <h2 className="font-bold text-gray-200">{result.title}</h2>
                   <div className="flex justify-between">
-                    <p className="text-gray-700 text-sm">{result.release_date}</p>
-                    <p className="text-gray-700 text-sm">Vote({result.vote_count})</p>
+                    <p className="text-gray-400 text-sm">{result.release_date}</p>
+                    <p className="text-gray-400 text-sm">Vote({result.vote_count})</p>
                   </div>
                 </div>
               </div>

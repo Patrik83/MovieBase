@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query"
 import { getTopRated } from "../services/TMDB_API"
-import Pagination from "../components/Pagination";
-import ErrorAlert from "../components/ErrorAlert";
-import Spinner from "../components/Spinner";
 import { useSearchParams } from "react-router";
+import { useQuery } from "@tanstack/react-query"
+import ErrorAlert from "../components/ErrorAlert";
+import Pagination from "../components/Pagination";
+import Spinner from "../components/Spinner";
 
 const RatedMoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -28,15 +28,15 @@ const RatedMoviesPage = () => {
             {movies.results.map(movies => (
               <div key={movies.id}>
                 <img
-                  className="w-full"
+                  className="w-full rounded-r-3xl"
                   src={`https://image.tmdb.org/t/p/w500/${movies.poster_path}`}
                   alt=""
                 />
-                <div className="px-1 py-0">
-                  <h2 className="font-bold">{movies.title}</h2>
+                <div className="px-0 py-1 pb-5">
+                  <h2 className="font-bold text-gray-200">{movies.title}</h2>
                   <div className="flex justify-between">
-                    <p className="text-gray-700 text-sm">{movies.release_date}</p>
-                    <p className="text-gray-700 text-sm">Vote({movies.vote_count})</p>
+                    <p className="text-gray-400 text-sm">{movies.release_date}</p>
+                    <p className="text-gray-400 text-sm">Vote({movies.vote_count})</p>
                   </div>
                 </div>
               </div>
