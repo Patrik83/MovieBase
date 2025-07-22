@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { searchMovie } from "../services/TMDB_API";
 import { useSearchParams } from "react-router";
 import Pagination from "../components/Pagination";
+import MovieCard from "../components/MovieCard";
 
 const SearchPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,20 +21,13 @@ const SearchPage = () => {
         <>
           <div className="grid grid-cols-2 px-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:px-0 pt-3">
             {search.results.map(result => (
-              <div key={result.id}>
-                <img
-                  className="w-full rounded-r-3xl"
-                  src={`https://image.tmdb.org/t/p/w500/${result.poster_path}`}
-                  alt=""
-                />
-                <div className="px-0 py-1 pb-5">
-                  <h2 className="font-bold text-gray-200">{result.title}</h2>
-                  <div className="flex justify-between">
-                    <p className="text-gray-400 text-sm">{result.release_date}</p>
-                    <p className="text-gray-400 text-sm">Vote({result.vote_count})</p>
-                  </div>
-                </div>
-              </div>
+              <MovieCard 
+                id={result.id} 
+                title={result.title} 
+                poster={result.poster_path} 
+                votes={result.vote_count} 
+                releaseDate={result.release_date}
+              />
             ))}
           </div>
 

@@ -4,6 +4,7 @@ import Pagination from "../components/Pagination";
 import ErrorAlert from "../components/ErrorAlert";
 import Spinner from "../components/Spinner";
 import { useSearchParams } from "react-router";
+import MovieCard from "../components/MovieCard";
 
 const TrendingMoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,20 +27,13 @@ const TrendingMoviesPage = () => {
           <title>Trending Movies</title>
           <div className="grid grid-cols-2 px-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:px-0 pt-3">
             {movies.results.map(movie => (
-              <div key={movie.id}>
-                <img
-                  className="w-full rounded-r-3xl"
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  alt=""
-                />
-                <div className="px-0 py-1 pb-5">
-                  <h2 className="font-bold text-gray-200">{movie.title}</h2>
-                  <div className="flex justify-between">
-                    <p className="text-gray-400 text-sm">{movie.release_date}</p>
-                    <p className="text-gray-400 text-sm">Vote({movie.vote_count})</p>
-                  </div>
-                </div>
-              </div>
+              <MovieCard 
+                id={movie.id} 
+                title={movie.title} 
+                poster={movie.poster_path} 
+                votes={movie.vote_count} 
+                releaseDate={movie.release_date}
+              />
             ))}
           </div>
 

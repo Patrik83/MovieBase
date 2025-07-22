@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query"
 import ErrorAlert from "../components/ErrorAlert";
 import Pagination from "../components/Pagination";
 import Spinner from "../components/Spinner";
+import MovieCard from "../components/MovieCard";
 
 const RatedMoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -25,21 +26,14 @@ const RatedMoviesPage = () => {
         <>
           <title>Rated Movies</title>
           <div className="grid grid-cols-2 px-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:px-0 pt-3">
-            {movies.results.map(movies => (
-              <div key={movies.id}>
-                <img
-                  className="w-full rounded-r-3xl"
-                  src={`https://image.tmdb.org/t/p/w500/${movies.poster_path}`}
-                  alt=""
-                />
-                <div className="px-0 py-1 pb-5">
-                  <h2 className="font-bold text-gray-200">{movies.title}</h2>
-                  <div className="flex justify-between">
-                    <p className="text-gray-400 text-sm">{movies.release_date}</p>
-                    <p className="text-gray-400 text-sm">Vote({movies.vote_count})</p>
-                  </div>
-                </div>
-              </div>
+            {movies.results.map(movie => (
+              <MovieCard 
+                id={movie.id} 
+                title={movie.title} 
+                poster={movie.poster_path} 
+                votes={movie.vote_count} 
+                releaseDate={movie.release_date}
+              />
             ))}
           </div>
 
