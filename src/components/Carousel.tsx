@@ -1,39 +1,72 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import { Children } from "react";
 
 interface CarouselDesktopProps {
   children: React.ReactNode;
 }
 
 const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ children }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [imageNumber, setImageNumber] = useState(0);
+  const imageRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  const scrollByAmount = 162;
+  useEffect(() => {
+    const currentImage = imageRef.current[imageNumber];
+
+    if (currentImage) {
+      currentImage.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
+  }, [imageNumber]);
 
   const next = () => {
-    containerRef.current?.scrollBy({
-      left: scrollByAmount,
-      behavior: "smooth",
-    });
+    setImageNumber(prev => prev + 1);
   };
 
   const prev = () => {
-    containerRef.current?.scrollBy({
-      left: -scrollByAmount,
-      behavior: "smooth",
-    });
+    setImageNumber(prev => prev - 1);
   };
 
   return (
     <div className="carousel-wrapper">
-      <button onClick={prev} className="btn-prev">prev</button>
+      <button
+        onClick={prev}
+        disabled={imageNumber === 1}
+        className="btn-prev disabled:opacity-50"
+      >
+        Prev
+      </button>
 
-      <div ref={containerRef}>
+      <div>
         <div className="flex">
-          {children}
+        {Children.map(children, (child, index) => (
+          <div
+            key={index}
+            ref={(el) => {
+              imageRef.current[index] = el;
+            }}
+            className="flex flex-shrink-0 items-center"
+          >
+            <div
+              className={`transition-all duration-300 ${
+                index === imageNumber ? "big" : "normal"
+              }`}
+            >
+              {child}
+            </div>
+          </div>
+        ))}
         </div>
       </div>
 
-      <button onClick={next} className="btn-next">next</button>
+      <button
+        onClick={next}
+        disabled={imageNumber === Children.count(children) - 1}
+        className="btn-next disabled:opacity-50"
+      >
+        Next
+      </button>
     </div>
   );
 };
