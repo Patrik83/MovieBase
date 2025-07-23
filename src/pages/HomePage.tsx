@@ -11,17 +11,7 @@ const HomePage = () => {
 
   return (
     <>
-      {movies && (
-        <CarouselDesktop>
-          {movies.results.map(movie => (
-            <img
-              key={movie.id}
-              src={`https://image.tmdb.org/t/p/w154/${movie.poster_path}`}
-              alt=""
-            />
-          ))}
-        </CarouselDesktop>
-      )}
+      {movies && <CarouselDesktop movies={movies.results} />}
     </>
   )
 }

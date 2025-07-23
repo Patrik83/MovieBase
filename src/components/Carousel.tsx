@@ -1,11 +1,11 @@
 import { useRef, useState, useEffect } from "react";
-import { Children } from "react";
+import type { Movie } from "../services/TMDB_API";
 
 interface CarouselDesktopProps {
-  children: React.ReactNode;
+  movies: Movie[];
 }
 
-const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ children }) => {
+const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ movies }) => {
   const [imageNumber, setImageNumber] = useState(0);
   const imageRef = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -41,9 +41,9 @@ const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ children }) => {
 
       <div>
         <div className="flex">
-        {Children.map(children, (child, index) => (
+        {movies.map((movie, index) => (
           <div
-            key={index}
+            key={movie.id}
             ref={(el) => {
               imageRef.current[index] = el;
             }}
@@ -55,7 +55,11 @@ const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ children }) => {
                 index === imageNumber ? "big" : "normal"
               }`}
             >
-              {child}
+              <img
+              key={movie.id}
+              src={`https://image.tmdb.org/t/p/w154/${movie.poster_path}`}
+              alt=""
+            />
             </div>
           </div>
         ))}
@@ -64,7 +68,7 @@ const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ children }) => {
 
       <button
         onClick={next}
-        disabled={imageNumber === Children.count(children) - 1}
+        disabled={imageNumber === 19}
         className="btn-next disabled:opacity-50"
       >
         Next
