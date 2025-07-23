@@ -15,6 +15,7 @@ const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ children }) => {
     if (currentImage) {
       currentImage.scrollIntoView({
         behavior: "smooth",
+        inline: "start",
         block: "nearest",
       });
     }
@@ -32,7 +33,7 @@ const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ children }) => {
     <div className="carousel-wrapper">
       <button
         onClick={prev}
-        disabled={imageNumber === 1}
+        disabled={imageNumber === 0}
         className="btn-prev disabled:opacity-50"
       >
         Prev
@@ -47,6 +48,7 @@ const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ children }) => {
               imageRef.current[index] = el;
             }}
             className="flex flex-shrink-0 items-center"
+            style={{ scrollMarginLeft: "70px" }}
           >
             <div
               className={`transition-all duration-300 ${
