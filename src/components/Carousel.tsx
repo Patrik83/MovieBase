@@ -38,32 +38,24 @@ const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ movies }) => {
       >
         Prev
       </button>
-
-      <div>
-        <div className="flex">
+      
+      <div className="flex">
         {movies.map((movie, index) => (
           <div
             key={movie.id}
             ref={(el) => {
               imageRef.current[index] = el;
             }}
-            className="flex flex-shrink-0 items-center"
             style={{ scrollMarginLeft: "70px" }}
           >
-            <div
-              className={`transition-all duration-300 ${
-                index === imageNumber ? "big" : "normal"
-              }`}
-            >
+            <div className={`transition-all duration-300 ${index === imageNumber ? "big" : "normal"}`}>
               <img
-              key={movie.id}
-              src={`https://image.tmdb.org/t/p/w154/${movie.poster_path}`}
-              alt=""
-            />
+                src={`https://image.tmdb.org/t/p/w154/${movie.poster_path}`}
+                alt=""
+              />
             </div>
           </div>
         ))}
-        </div>
       </div>
 
       <button
