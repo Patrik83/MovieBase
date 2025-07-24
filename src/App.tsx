@@ -10,7 +10,7 @@ function App() {
     <div style={{backgroundColor: "#212121"}}>
       <Navigation />
       
-      <div className="@container max-w-screen-xl mx-auto">
+      <div className="@container max-w-screen-xl mx-auto h-screen">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/rated" element={<RatedMoviesPage />} />
