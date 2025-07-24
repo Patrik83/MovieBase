@@ -8,7 +8,7 @@ interface CarouselImageProps {
 
 const CarouselImage: React.FC<CarouselImageProps> = ({ imageRef, imageNumber, hasInteracted, index, poster }) => {
 
-  const handleImage = (index: number) => {
+  const handleImage = () => {
     if (!hasInteracted) return "normal";
 
     return index === imageNumber ? "big" : "normal";
@@ -16,7 +16,7 @@ const CarouselImage: React.FC<CarouselImageProps> = ({ imageRef, imageNumber, ha
 
   return (
     <div ref={imageRef} style={{ scrollMarginLeft: "70px" }}>
-      <div className={`transition-all duration-300 ${handleImage(index)}`}>
+      <div className={`transition-all duration-300 ${handleImage()}`}>
         <img
           src={`https://image.tmdb.org/t/p/w154/${poster}`}
           alt=""
