@@ -23,27 +23,35 @@ const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ movies }) => {
     }
   }, [imageNumber]);
 
-  const next = () => {
-    setHasInteracted(true);
-    setImageNumber(prev => prev + 1);
-  };
+  // Manage interaction state to prevent multiple images from appearing active simultaneously during hover
+  const resetInteraction = () => setHasInteracted(false);
+  const restoreInteraction = () => setHasInteracted(true);
 
+  // navigate to previous image and activate interaction
   const prev = () => {
     setHasInteracted(true)
     setImageNumber(prev => prev - 1);
   };
 
+  // navigate to next image and activate interaction
+  const next = () => {
+    setHasInteracted(true);
+    setImageNumber(prev => prev + 1);
+  };
+
   return (
     <div className="carousel-wrapper">
-      <button
-        onClick={prev}
-        disabled={imageNumber === 0}
-        className="btn-prev disabled:opacity-50"
-      >
-        Prev
-      </button>
+      <div>
+        <button
+          onClick={prev}
+          disabled={imageNumber === 0}
+          className="btn-prev disabled:opacity-50"
+        >
+          
+        </button>
+      </div>
       
-      <div className="flex">
+      <div className="carousel-list">
         {movies.map((movie, index) => (
           <CarouselImage 
             key={movie.id}
@@ -52,17 +60,21 @@ const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ movies }) => {
             hasInteracted={hasInteracted}
             imageNumber={imageNumber}
             poster={movie.poster_path}
+            onInteractionReset={resetInteraction}
+            onInteractionRestore={restoreInteraction}
           />
           ))}
       </div>
 
-      <button
-        onClick={next}
-        disabled={imageNumber === 19}
-        className="btn-next disabled:opacity-50"
-      >
-        Next
-      </button>
+      <div>
+        <button
+          onClick={next}
+          disabled={imageNumber === 19}
+          className="btn-next disabled:opacity-50"
+        >
+          
+        </button>
+      </div>
     </div>
   );
 };
