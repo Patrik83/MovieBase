@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTopRated, getTrending } from "../services/TMDB_API";
-import CarouselDesktop from "../components/Carousel";
+import CarouselDesktop from "../components/Carousel/Carousel";
 
 const HomePage = () => {
 

@@ -4,7 +4,7 @@ import Pagination from "../components/Pagination";
 import ErrorAlert from "../components/ErrorAlert";
 import Spinner from "../components/Spinner";
 import { useSearchParams } from "react-router";
-import MovieCard from "../components/MovieCard";
+import MovieCard from "../components/Movie/MovieCard";
 
 const TrendingMoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();

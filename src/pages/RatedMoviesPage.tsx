@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query"
 import ErrorAlert from "../components/ErrorAlert";
 import Pagination from "../components/Pagination";
 import Spinner from "../components/Spinner";
-import MovieCard from "../components/MovieCard";
+import MovieCard from "../components/Movie/MovieCard";
 
 const RatedMoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
