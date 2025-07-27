@@ -1,43 +1,12 @@
 import axios from "axios";
-
-interface Genre {
-  id: number;
-  name: string;
-}
-
-interface Cast {
-  id: number;
-  name: string;
-  profile_path: string;
-}
-
-interface Credits {
-  cast: Cast[];
-}
-
-export interface Movie {
-  id: number;
-  title: string;
-  poster_path: string;
-  release_date: string;
-  vote_count: number;
-  overview: string;
-  tagline: string;
-}
-
-export interface MovieDetails extends Movie {
-  credits: Credits;
-}
+import type { Movie, MovieDetails } from "../types/Movie.types";
+import type { GenreResponse } from "../types/Genre.types";
 
 interface PageResult {
   results: Movie[];
   page: number;
   total_pages: number;
   total_results: number
-}
-
-interface GenreResponse {
-  genres: Genre[];
 }
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY as string;

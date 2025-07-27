@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import type { Movie } from "../../services/TMDB_API";
+import type { Movie } from "../../types/Movie.types";
 
 interface MovieListCardProps {
   movie: Movie;

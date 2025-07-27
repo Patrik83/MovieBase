@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import type { Movie } from "../../services/TMDB_API";
+import type { Movie } from "../../types/Movie.types";
 import CarouselImage from "./CarouselImage";
 
 interface CarouselProps {
