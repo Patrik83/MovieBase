@@ -5,21 +5,39 @@ interface Genre {
   name: string;
 }
 
+interface Cast {
+  id: number;
+  name: string;
+  profile_path: string;
+}
+
+interface Credits {
+  cast: Cast[];
+}
+
 export interface Movie {
   id: number;
   title: string;
   poster_path: string;
   release_date: string;
   vote_count: number;
+  overview: string;
+  tagline: string;
 }
 
-interface MovieResponse {
+export interface MovieDetails extends Movie {
+  credits: Credits;
+}
+
+interface PageResult {
   results: Movie[];
-  genres: Genre[];
   page: number;
   total_pages: number;
   total_results: number
-  query: string;
+}
+
+interface GenreResponse {
+  genres: Genre[];
 }
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY as string;
@@ -33,7 +51,7 @@ const instance = axios.create({
 });
 
 export const getTopRated = async (pageNumber: number) => {
-  const res = await instance.get<MovieResponse>("/movie/top_rated", {
+  const res = await instance.get<PageResult>("/movie/top_rated", {
     params: {
       page: pageNumber,
     }
@@ -42,7 +60,7 @@ export const getTopRated = async (pageNumber: number) => {
 }
 
 export const getTrending = async (pageNumber: number) => {
-  const res = await instance.get<MovieResponse>("/trending/movie/day", {
+  const res = await instance.get<PageResult>("/trending/movie/day", {
     params: {
       page: pageNumber,
     }
@@ -51,7 +69,7 @@ export const getTrending = async (pageNumber: number) => {
 }
 
 export const searchMovie = async (searchQuery: string, pageNumber: number) => {
-  const res = await instance.get<MovieResponse>("/search/movie", {
+  const res = await instance.get<PageResult>("/search/movie", {
     params: {
       query: searchQuery,
       page: pageNumber,
@@ -61,6 +79,15 @@ export const searchMovie = async (searchQuery: string, pageNumber: number) => {
 }
 
 export const getGenres = async () => {
-  const res = await instance.get<MovieResponse>("/genre/movie/list");
+  const res = await instance.get<GenreResponse>("/genre/movie/list");
   return res.data.genres;
+}
+
+export const getMovieDetails = async (movieId: number) => {
+  const res = await instance.get<MovieDetails>(`/movie/${movieId}`, {
+    params: {
+      append_to_response: "credits"
+    }
+  });
+  return res.data;
 }
