@@ -1,4 +1,4 @@
-import type { MovieDetails as MovieDetailsType } from "../services/TMDB_API";
+import type { MovieDetails as MovieDetailsType } from "../../services/TMDB_API";
 
 interface MovieDetailsProps {
   movie: MovieDetailsType;
