@@ -1,12 +1,12 @@
 import { useRef, useState, useEffect } from "react";
-import type { Movie } from "../services/TMDB_API";
+import type { Movie } from "../../services/TMDB_API";
 import CarouselImage from "./CarouselImage";
 
-interface CarouselDesktopProps {
+interface CarouselProps {
   movies: Movie[];
 }
 
-const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ movies }) => {
+const Carousel: React.FC<CarouselProps> = ({ movies }) => {
   const [imageNumber, setImageNumber] = useState(0);
   const [hasInteracted, setHasInteracted] = useState(false);
   const imageRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -23,17 +23,14 @@ const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ movies }) => {
     }
   }, [imageNumber]);
 
-  // Manage interaction state to prevent multiple images from appearing active simultaneously during hover
   const resetInteraction = () => setHasInteracted(false);
   const restoreInteraction = () => setHasInteracted(true);
 
-  // navigate to previous image and activate interaction
   const prev = () => {
     setHasInteracted(true)
     setImageNumber(prev => prev - 1);
   };
 
-  // navigate to next image and activate interaction
   const next = () => {
     setHasInteracted(true);
     setImageNumber(prev => prev + 1);
@@ -45,10 +42,8 @@ const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ movies }) => {
         <button
           onClick={prev}
           disabled={imageNumber === 0}
-          className="btn-prev disabled:opacity-50"
-        >
-          
-        </button>
+          className="btn-prev disabled:opacity-0"
+        />
       </div>
       
       <div className="carousel-list">
@@ -64,20 +59,18 @@ const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ movies }) => {
             onInteractionReset={resetInteraction}
             onInteractionRestore={restoreInteraction}
           />
-          ))}
+        ))}
       </div>
 
       <div>
         <button
           onClick={next}
           disabled={imageNumber === 19}
-          className="btn-next disabled:opacity-50"
-        >
-          
-        </button>
+          className="btn-next disabled:opacity-0"
+        />
       </div>
     </div>
   );
 };
 
-export default CarouselDesktop;
+export default Carousel;
