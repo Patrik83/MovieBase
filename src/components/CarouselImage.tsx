@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { Link } from "react-router";
 
 interface CarouselImageProps {
   imageRef: (el: HTMLDivElement | null) => void;
   imageNumber: number;
   hasInteracted: boolean;
   index: number;
+  id: number;
   poster: string;
   onInteractionReset: () => void;
   onInteractionRestore: () => void;
@@ -15,6 +17,7 @@ const CarouselImage: React.FC<CarouselImageProps> = ({
   imageNumber, 
   hasInteracted, 
   index, 
+  id,
   poster, 
   onInteractionReset, 
   onInteractionRestore 
@@ -42,10 +45,12 @@ const CarouselImage: React.FC<CarouselImageProps> = ({
       }}
     >
       <div className={handleImageSize()}>
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${poster}`}
-          alt=""
-        />
+        <Link to={`/movie/${id}`}>
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${poster}`}
+            alt=""
+          />
+        </Link>
       </div>
     </div>
   )

@@ -55,6 +55,7 @@ const CarouselDesktop: React.FC<CarouselDesktopProps> = ({ movies }) => {
         {movies.map((movie, index) => (
           <CarouselImage 
             key={movie.id}
+            id={movie.id}
             index={index} 
             imageRef={el => imageRef.current[index] = el} 
             hasInteracted={hasInteracted}

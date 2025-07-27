@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 interface MovieCardProps {
   id: number;
   title: string;
@@ -9,11 +11,13 @@ interface MovieCardProps {
 const MovieCard: React.FC<MovieCardProps> = ({ id, title, poster, votes, releaseDate }) => {
   return (
     <div key={id}>
-      <img
-        className="w-full rounded-r-3xl"
-        src={`https://image.tmdb.org/t/p/w500/${poster}`}
-        alt=""
-      />
+      <Link to={`/movie/${id}`}>
+        <img
+          className="w-full rounded-r-3xl"
+          src={`https://image.tmdb.org/t/p/w500/${poster}`}
+          alt=""
+        />
+      </Link>
       <div className="px-0 py-1 pb-5">
         <h2 className="font-bold text-gray-200">{title}</h2>
         <div className="flex justify-between">
