@@ -2,9 +2,9 @@ import { Routes, Route } from "react-router";
 import Navigation from "./components/Navigation";
 import RatedMoviesPage from "./pages/RatedMoviesPage";
 import SearchPage from "./pages/SearchPage";
-import TrendingMoviesPage from "./pages/TrendingMoviesPage";
 import HomePage from "./pages/HomePage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
+import PopularMoviesPage from "./pages/PopularMoviesPage";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/rated" element={<RatedMoviesPage />} />
-          <Route path="/trending" element={<TrendingMoviesPage />} />
+          <Route path="/popular" element={<PopularMoviesPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/movie/:id" element={<MovieDetailsPage />} />
         </Routes>

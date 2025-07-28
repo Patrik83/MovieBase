@@ -1,23 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
-import { getTopRated, getTrending } from "../services/TMDB_API";
-import CarouselDesktop from "../components/Carousel/Carousel";
+import { getTopRated, getPopular } from "../services/TMDB_API";
+import Carousel from "../components/Carousel/Carousel";
 
 const HomePage = () => {
 
-  const { data: trendingmovies } = useQuery({
-    queryKey: (["trending", 1]),
-    queryFn: () => getTrending(1),
+  const { data: popularmovies } = useQuery({
+    queryKey: (["popular", 1]),
+    queryFn: () => getPopular(1),
   })
 
   const { data: ratedmovies } = useQuery({
-      queryKey: (["rated", 1]),
-      queryFn: () => getTopRated(1),
-    })
+    queryKey: (["rated", 1]),
+    queryFn: () => getTopRated(1),
+  })
 
   return (
     <>
-      {trendingmovies && <CarouselDesktop movies={trendingmovies.results} />}
-      {ratedmovies && <CarouselDesktop movies={ratedmovies.results} />}
+      {popularmovies && <Carousel movies={popularmovies.results} />}
+      {ratedmovies && <Carousel movies={ratedmovies.results} />}
     </>
   )
 }

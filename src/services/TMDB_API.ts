@@ -28,8 +28,8 @@ export const getTopRated = async (pageNumber: number) => {
   return res.data;
 }
 
-export const getTrending = async (pageNumber: number) => {
-  const res = await instance.get<PageResult>("/trending/movie/day", {
+export const getPopular = async (pageNumber: number) => {
+  const res = await instance.get<PageResult>("/movie/popular", {
     params: {
       page: pageNumber,
     }
