@@ -27,9 +27,9 @@ const Navigation = () => {
           </div>
 
           <div className="hidden sm:flex px-0 gap-7">
-            <NavLink to={"/trending"} onClick={handleCloseMenu}>Trending</NavLink>
-            <NavLink to={"/rated"} onClick={handleCloseMenu}>Rated</NavLink>
-            <span className="cursor-pointer" onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}>Browse Genres</span>
+            <NavLink to={"/popular"} onClick={handleCloseMenu}>Most popular movies</NavLink>
+            <NavLink to={"/rated"} onClick={handleCloseMenu}>Highest rated movies</NavLink>
+            <span className="cursor-pointer" onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}>Browse movies by genre</span>
           </div>
 
           <Search />
@@ -45,9 +45,9 @@ const Navigation = () => {
       <div className="pt-16">
         {isMenuOpen && (
           <div className="fixed w-full flex flex-col gap-1 sm:hidden bg-gray-300 px-4 pt-3 z-20">
-            <NavLink to={"/trending"} onClick={handleCloseMenu}>Trending</NavLink>
-            <NavLink to={"/rated"} onClick={handleCloseMenu}>Rated</NavLink>
-            <span className="cursor-pointer" onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}>Browse Genres</span>
+            <NavLink to={"/popular"} onClick={handleCloseMenu}>Most popular movies</NavLink>
+            <NavLink to={"/rated"} onClick={handleCloseMenu}>Highest rated movies</NavLink>
+            <span className="cursor-pointer" onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}>Browse movies by genre</span>
 
             <div className="px-3 pt-1 pb-3">
               {isSubMenuOpen && <GenreList />}
