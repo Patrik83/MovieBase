@@ -7,7 +7,7 @@ interface MovieListCardProps {
 
 const MovieListCard: React.FC<MovieListCardProps> = ({ movie }) => {
   return (
-    <div key={movie.id}>
+    <div>
       <Link to={`/movie/${movie.id}`}>
         <img
           className="w-full rounded-r-3xl"

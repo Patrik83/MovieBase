@@ -21,7 +21,7 @@ const SearchPage = () => {
         <>
           <div className="grid grid-cols-2 px-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:px-0 pt-3">
             {search.results.map(result => (
-              <MovieListCard movie={result}/>
+              <MovieListCard key={result.id} movie={result}/>
             ))}
           </div>
 
