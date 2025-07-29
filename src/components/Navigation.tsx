@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
-import burger from "../assets/icons/burger.svg";
+import burger from "../assets/icons/menu-burger.svg";
 import GenreList from "./GenreList";
 import Search from "./Search";
 
