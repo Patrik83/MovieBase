@@ -37,23 +37,4 @@
       height: 200px;
     }
   }
-
-  .btn-prev,
-  .btn-next {
-    width: 0;
-    height: 0;
-    border-top: 80px solid transparent;
-    border-bottom: 80px solid transparent;
-    cursor: pointer;
-  }
-
-  .btn-prev {
-    margin-right: 10px;
-    border-right: 15px solid #667eea;
-  }
-
-  .btn-next {
-    margin-left: 10px;
-    border-left: 15px solid #667eea;
-  }
 }

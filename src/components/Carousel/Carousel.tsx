@@ -1,6 +1,8 @@
 import { useRef, useState, useEffect } from "react";
 import type { Movie } from "../../types/Movie.types";
 import CarouselImage from "./CarouselImage";
+import leftArrow from "../../assets/icons/left-arrow.svg";
+import rightArrow from "../../assets/icons/right-arrow.svg";
 
 interface CarouselProps {
   movies: Movie[];
@@ -38,12 +40,18 @@ const Carousel: React.FC<CarouselProps> = ({ movies }) => {
 
   return (
     <div className="carousel-wrapper">
-      <div>
-        <button
-          onClick={prev}
-          disabled={imageNumber === 0}
-          className="btn-prev disabled:opacity-0"
-        />
+      <div className="flex h-full pt-25">
+        <button 
+          onClick={prev} 
+          disabled={imageNumber === 0} 
+          className="disabled:opacity-0"
+        >
+          <img 
+            src={leftArrow} 
+            alt="" 
+            className="h-24 cursor-pointer" 
+          />
+        </button>
       </div>
       
       <div className="carousel-list">
@@ -62,12 +70,17 @@ const Carousel: React.FC<CarouselProps> = ({ movies }) => {
         ))}
       </div>
 
-      <div>
-        <button
-          onClick={next}
-          disabled={imageNumber === 19}
-          className="btn-next disabled:opacity-0"
-        />
+      <div className="flex h-full pt-25">
+        <button onClick={next} 
+          disabled={imageNumber === 19} 
+          className="disabled:opacity-0"
+        >
+          <img 
+            src={rightArrow} 
+            alt=""
+            className="h-24 cursor-pointer" 
+          />
+        </button>
       </div>
     </div>
   );
