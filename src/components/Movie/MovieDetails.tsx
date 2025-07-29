@@ -15,6 +15,12 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
         />
         <div className="lg:hidden px-4 text-gray-300">
           <h2 className="font-bold text-xl sm:text-3xl">{movie.title}</h2>
+
+          <div className="flex flex-wrap justify-between px-5">
+            {movie.genres.map(genre => (
+              <p className="text-gray-300 text-sm sm:text-1xl pt-3">{genre.name}</p>
+            ))}
+          </div>
         </div>
         
       </div>
