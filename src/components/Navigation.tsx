@@ -17,7 +17,7 @@ const Navigation = () => {
     <nav className="relative">
       <div className="fixed w-full z-10 dark:bg-black dark:text-white">
         <div className="max-w-screen-xl mx-auto px-2 sm:px-0 flex items-center justify-between">
-          <div className="sm:hidden min-w-8">
+          <div className="lg:hidden min-w-8">
             <img
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               src={burger}
@@ -26,7 +26,7 @@ const Navigation = () => {
             />
           </div>
 
-          <div className="hidden sm:flex px-0 gap-7">
+          <div className="hidden lg:flex px-0 gap-7">
             <NavLink to={"/popular"} onClick={handleCloseMenu}>Most popular movies</NavLink>
             <NavLink to={"/rated"} onClick={handleCloseMenu}>Highest rated movies</NavLink>
             <span className="cursor-pointer" onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}>Browse movies by genre</span>
@@ -36,7 +36,7 @@ const Navigation = () => {
         </div>
 
         {isSubMenuOpen && (
-          <div className="hidden sm:block w-full absolute pt-1 z-10">
+          <div className="hidden lg:block w-full absolute pt-1 z-10">
             <GenreList />
           </div>
         )}
@@ -44,7 +44,7 @@ const Navigation = () => {
 
       <div className="pt-16">
         {isMenuOpen && (
-          <div className="fixed w-full flex flex-col gap-1 sm:hidden bg-gray-300 px-4 pt-3 z-20">
+          <div className="fixed w-full flex flex-col gap-1 lg:hidden bg-gray-300 px-4 pt-3 z-20">
             <NavLink to={"/popular"} onClick={handleCloseMenu}>Most popular movies</NavLink>
             <NavLink to={"/rated"} onClick={handleCloseMenu}>Highest rated movies</NavLink>
             <span className="cursor-pointer" onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}>Browse movies by genre</span>
