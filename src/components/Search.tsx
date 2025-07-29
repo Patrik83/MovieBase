@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import search from "../assets/icons/search-2.svg";
 
 const Search = () => {
   const [inputValue, setInputValue] = useState("");
+  const inputValueEl = useRef<HTMLInputElement>(null)
   const [showSearch, setShowSearch] = useState(false);
   const navigate = useNavigate();
 
@@ -13,6 +14,12 @@ const Search = () => {
     navigate(`/search?query=${inputValue}&page=1`);
     setShowSearch(false);
   }
+
+  useEffect(() => {
+    if (showSearch && inputValueEl.current) {
+      inputValueEl.current.focus();
+    }
+  }, [showSearch]);
 
   return (
     <>
@@ -26,6 +33,7 @@ const Search = () => {
               type="text" 
               onChange={e => setInputValue(e.target.value)}
               value={inputValue}
+              ref={inputValueEl}
               className="sm:w-sm text-black bg-gray-300 focus:outline-none pl-2 border rounded"
             />
             <button 
