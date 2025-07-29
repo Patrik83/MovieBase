@@ -16,7 +16,7 @@ const Navigation = () => {
   return (
     <nav className="relative">
       <div className="fixed w-full z-10 dark:bg-black dark:text-white">
-        <div className="max-w-screen-xl mx-auto px-2 sm:px-0 flex items-center justify-between">
+        <div className="max-w-screen-xl mx-auto px-2 sm:px-0 flex items-center justify-between min-h-14">
           <div className="lg:hidden min-w-8">
             <img
               onClick={() => setIsMenuOpen(!isMenuOpen)}
