@@ -26,7 +26,11 @@ const Carousel: React.FC<CarouselProps> = ({ movies }) => {
   }, [imageNumber]);
 
   const resetInteraction = () => setHasInteracted(false);
-  const restoreInteraction = () => setHasInteracted(true);
+  const restoreInteraction = () => {
+    if (imageNumber > 0) {
+      setHasInteracted(true);
+    }
+  }
 
   const prev = () => {
     setHasInteracted(true)
