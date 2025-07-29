@@ -8,7 +8,7 @@ import PopularMoviesPage from "./pages/PopularMoviesPage";
 
 function App() {
   return (
-    <div style={{backgroundColor: "#212121"}}>
+    <div className="bg-dark-gradient">
       <Navigation />
       
       <div className="@container max-w-screen-xl mx-auto h-screen">
