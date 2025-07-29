@@ -1,4 +1,5 @@
 import type { MovieDetails as MovieDetailsType } from "../../types/Movie.types";
+import { dateFormatter } from "../../utils/dateFormatter";
 
 interface MovieDetailsProps {
   movie: MovieDetailsType;
@@ -26,6 +27,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
       </div>
       <div className="col-span-2 mt-5 pt-5 rounded-lg lg:p-4 lg:mt-0 space-y-10">
         <h2 className="hidden lg:block text-5xl lg:text-7xl font-bold text-gray-300">{movie.title}</h2>
+        <p className="text-gray-300">{movie.status} {dateFormatter(movie.release_date)}</p>
         <p className="text-1xl text-gray-300">{movie.overview}</p>
 
         <div className="flex">
