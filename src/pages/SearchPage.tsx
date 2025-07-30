@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { searchMovie } from "../services/TMDB_API";
 import { useSearchParams } from "react-router";
 import Pagination from "../components/Pagination";
-import MovieListCard from "../components/Movie/MovieListCard";
 import SearchResult from "../components/SearchResult";
 
 const SearchPage = () => {
@@ -20,12 +19,11 @@ const SearchPage = () => {
     <>
       {search && (
         <div className="mt-10">
-        <h2 className="text-gray-300 px-2 mb-3">Showing {search.total_results} search results for "{query}"...</h2>
-          <div className="grid grid-cols-1 px-2">
-            {search.results.map(result => (
-              <SearchResult key={result.id} movie={result} />
-            ))}
-          </div>
+          <h2 className="text-gray-300 sm:text-xl lg:text-2xl px-2 mb-3">
+            Showing {search.total_results} search results for "{query}"...
+          </h2>
+          
+          <SearchResult movie={search.results} />
 
           <Pagination 
             firstPage={page === 1} 
