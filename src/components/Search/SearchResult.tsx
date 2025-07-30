@@ -1,6 +1,6 @@
 import type React from "react";
-import type { Movie } from "../types/Movie.types";
-import { dateFormatter } from "../utils/dateFormatter";
+import type { Movie } from "../../types/Movie.types";
+import { dateFormatter } from "../../utils/dateFormatter";
 import { Link } from "react-router";
 
 interface SearchResultProps {

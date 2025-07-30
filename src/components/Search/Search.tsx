@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { useEffect, useRef, useState } from "react";
-import search from "../assets/icons/search-2.svg";
+import search from "../../assets/icons/search-2.svg";
 
 const Search = () => {
   const [inputValue, setInputValue] = useState("");

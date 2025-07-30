@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router";
 import burger from "../assets/icons/menu-burger.svg";
 import GenreList from "./GenreList";
-import Search from "./Search";
+import Search from "./Search/Search";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
