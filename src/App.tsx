@@ -8,10 +8,10 @@ import PopularMoviesPage from "./pages/PopularMoviesPage";
 
 function App() {
   return (
-    <div className="bg-dark-gradient">
+    <div className="bg-dark-gradient min-h-screen">
       <Navigation />
       
-      <div className="@container max-w-screen-xl mx-auto h-screen">
+      <div className="@container max-w-screen-xl mx-auto">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/rated" element={<RatedMoviesPage />} />
