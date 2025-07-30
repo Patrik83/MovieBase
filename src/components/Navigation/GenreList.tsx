@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { getGenres } from "../services/TMDB_API";
-import ErrorAlert from "./ErrorAlert";
-import Spinner from "./Spinner";
+import { getGenres } from "../../services/TMDB_API";
+import ErrorAlert from "../ErrorAlert";
+import Spinner from "../Spinner";
 
 const GenreList = () => {
   const { data: genres, error, isError, isLoading } = useQuery({
