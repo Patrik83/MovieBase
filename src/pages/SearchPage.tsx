@@ -3,6 +3,7 @@ import { searchMovie } from "../services/TMDB_API";
 import { useSearchParams } from "react-router";
 import Pagination from "../components/Pagination";
 import MovieListCard from "../components/Movie/MovieListCard";
+import SearchResult from "../components/SearchResult";
 
 const SearchPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,10 +19,11 @@ const SearchPage = () => {
   return (
     <>
       {search && (
-        <>
-          <div className="grid grid-cols-2 px-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:px-0 pt-3">
+        <div className="mt-10">
+        <h2 className="text-gray-300 px-2 mb-3">Showing {search.total_results} search results for "{query}"...</h2>
+          <div className="grid grid-cols-1 px-2">
             {search.results.map(result => (
-              <MovieListCard key={result.id} movie={result}/>
+              <SearchResult key={result.id} movie={result} />
             ))}
           </div>
 
@@ -39,7 +41,7 @@ const SearchPage = () => {
               setSearchParams({ query, page: String(nextPage) });
             }}
           />
-        </>
+        </div>
       )}
     </>
   )
