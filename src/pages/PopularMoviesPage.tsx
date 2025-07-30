@@ -1,10 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
 import { getPopular } from "../services/TMDB_API";
-import Pagination from "../components/Pagination";
-import ErrorAlert from "../components/ErrorAlert";
-import Spinner from "../components/Spinner";
 import { useSearchParams } from "react-router";
-import MovieCard from "../components/Movie/MovieListCard";
+import { useQuery } from "@tanstack/react-query";
+import ErrorAlert from "../components/ErrorAlert";
+import Pagination from "../components/Pagination";
+import Spinner from "../components/Spinner";
+import MovieListCard from "../components/Movie/MovieListCard";
 
 const PopularMoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,13 +23,10 @@ const PopularMoviesPage = () => {
       {isLoading && <Spinner />}
 
       {movies && (
-        <>
+        <div className="mt-10">
           <title>Popular Movies</title>
-          <div className="grid grid-cols-2 px-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:px-0 pt-3">
-            {movies.results.map(movie => (
-              <MovieCard key={movie.id} movie={movie}/>
-            ))}
-          </div>
+
+          <MovieListCard movies={movies.results} />
 
           <Pagination 
             firstPage={page === 1}
@@ -45,7 +42,7 @@ const PopularMoviesPage = () => {
               setSearchParams({ page: String(nextPage) });
             }}
           />
-        </>
+        </div>
       )}
     </>
   )

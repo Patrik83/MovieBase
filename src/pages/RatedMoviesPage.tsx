@@ -23,13 +23,10 @@ const RatedMoviesPage = () => {
       {isLoading && <Spinner />}
 
       {movies && (
-        <>
+        <div className="mt-10">
           <title>Rated Movies</title>
-          <div className="grid grid-cols-2 px-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:px-0 pt-3">
-            {movies.results.map(movie => (
-              <MovieListCard key={movie.id} movie={movie}/>
-            ))}
-          </div>
+          
+          <MovieListCard movies={movies.results} />
 
           <Pagination 
             firstPage={page === 1}
@@ -45,7 +42,7 @@ const RatedMoviesPage = () => {
               setSearchParams({ page: String(nextPage) });
             }}
           />
-        </>
+        </div>
       )}
     </>
   )
