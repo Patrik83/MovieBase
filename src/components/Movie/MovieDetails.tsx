@@ -12,7 +12,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
         <img 
           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} 
           alt=""
-          className="w-32 sm:w-64 h-auto rounded-lg lg:w-full"
+          className="w-32 sm:w-64 h-auto lg:w-full"
         />
         <div className="lg:hidden px-4 text-gray-300">
           <h2 className="font-bold text-xl sm:text-3xl">{movie.title}</h2>
@@ -25,7 +25,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
         </div>
         
       </div>
-      <div className="col-span-2 mt-5 pt-5 rounded-lg lg:p-4 lg:mt-0 space-y-10">
+      <div className="col-span-2 mt-5 pt-5 lg:p-4 lg:mt-0 space-y-10">
         <h2 className="hidden lg:block text-5xl lg:text-7xl font-bold text-gray-300">{movie.title}</h2>
         <p className="text-gray-300">{movie.status} {dateFormatter(movie.release_date)}</p>
         <p className="text-1xl text-gray-300">{movie.overview}</p>
