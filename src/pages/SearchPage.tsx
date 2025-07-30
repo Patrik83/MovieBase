@@ -23,7 +23,7 @@ const SearchPage = () => {
             Showing {search.total_results} search results for "{query}"...
           </h2>
           
-          <SearchResult movie={search.results} />
+          <SearchResult movies={search.results} />
 
           <Pagination 
             firstPage={page === 1} 
