@@ -1,6 +1,7 @@
 import axios from "axios";
-import type { Movie, MovieDetails } from "../types/Movie.types";
+import type { Movie, MovieResponse } from "../types/Movie.types";
 import type { GenreResponse } from "../types/Genre.types";
+import type { PersonResponse } from "../types/Person.types";
 
 interface PageResult {
   results: Movie[];
@@ -53,9 +54,18 @@ export const getGenres = async () => {
 }
 
 export const getMovieDetails = async (movieId: number) => {
-  const res = await instance.get<MovieDetails>(`/movie/${movieId}`, {
+  const res = await instance.get<MovieResponse>(`/movie/${movieId}`, {
     params: {
-      append_to_response: "credits"
+      append_to_response: "credits",
+    }
+  });
+  return res.data;
+}
+
+export const getPersonDetails = async (personId: number) => {
+  const res = await instance.get<PersonResponse>(`/person/${personId}`, {
+    params: {
+      append_to_response: "credits,images",
     }
   });
   return res.data;
