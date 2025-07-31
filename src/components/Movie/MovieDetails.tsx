@@ -1,5 +1,6 @@
 import type { MovieDetails as MovieDetailsType } from "../../types/Movie.types";
 import { dateFormatter } from "../../utils/dateFormatter";
+import MovieCast from "./MovieCast";
 
 interface MovieDetailsProps {
   movie: MovieDetailsType;
@@ -30,27 +31,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
         <p className="text-gray-300">{movie.status} {dateFormatter(movie.release_date)}</p>
         <p className="text-1xl text-gray-300">{movie.overview}</p>
 
-        <div className="flex">
-          <div className="p-2 lg:p-5">
-            <img src={`https://image.tmdb.org/t/p/w92/${movie.credits.cast[0].profile_path}`} alt="" className="w-14 h-14 lg:w-24 lg:h-24 rounded-full object-cover mx-auto"/>
-            <p className="mt-2 font-bold text-xs lg:text-md text-gray-300 text-center">{movie.credits.cast[0].name}</p>
-          </div>
-          
-          <div className="p-2 lg:p-5">
-            <img src={`https://image.tmdb.org/t/p/w92/${movie.credits.cast[1].profile_path}`} alt="" className="w-14 h-14 lg:w-24 lg:h-24 rounded-full object-cover mx-auto"/>
-            <p className="mt-2 font-bold text-xs lg:text-md text-gray-300 text-center">{movie.credits.cast[1].name}</p>
-          </div>
-          
-          <div className="p-2 lg:p-5">
-            <img src={`https://image.tmdb.org/t/p/w92/${movie.credits.cast[2].profile_path}`} alt="" className="w-14 h-14 lg:w-24 lg:h-24 rounded-full object-cover mx-auto"/>
-            <p className="mt-2 font-bold text-xs lg:text-md text-gray-300 text-center">{movie.credits.cast[2].name}</p>
-          </div>
-
-          <div className="p-2 lg:p-5">
-            <img src={`https://image.tmdb.org/t/p/w92/${movie.credits.cast[3].profile_path}`} alt="" className="w-14 h-14 lg:w-24 lg:h-24 rounded-full object-cover mx-auto"/>
-            <p className="mt-2 font-bold text-xs lg:text-md text-gray-300 text-center">{movie.credits.cast[3].name}</p>
-          </div>
-        </div>
+        <MovieCast movies={movie.credits} />
       </div>
     </div>
   )
