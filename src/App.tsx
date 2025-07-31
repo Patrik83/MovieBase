@@ -5,6 +5,7 @@ import SearchPage from "./pages/SearchPage";
 import HomePage from "./pages/HomePage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
 import PopularMoviesPage from "./pages/PopularMoviesPage";
+import PersonPage from "./pages/PersonPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/popular" element={<PopularMoviesPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/movie/:id" element={<MovieDetailsPage />} />
+          <Route path="/person/:id" element={<PersonPage />} />
         </Routes>
       </div>
     </div>
