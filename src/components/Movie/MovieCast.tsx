@@ -1,8 +1,9 @@
 import { Link } from "react-router";
 import type { Credits } from "../../types/Credits.types";
+import type { Person } from "../../types/Person.types";
 
 interface MovieCastProps {
-  movies: Credits;
+  movies: Credits<Person>;
 }
 
 const MovieCast: React.FC<MovieCastProps> = ({ movies }) => {

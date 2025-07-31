@@ -1,9 +1,9 @@
-import type { MovieDetails as MovieDetailsType } from "../../types/Movie.types";
+import type { MovieResponse } from "../../types/Movie.types";
 import { dateFormatter } from "../../utils/dateFormatter";
 import MovieCast from "./MovieCast";
 
 interface MovieDetailsProps {
-  movie: MovieDetailsType;
+  movie: MovieResponse;
 }
 
 const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
