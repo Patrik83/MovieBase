@@ -53,7 +53,7 @@ const Carousel: React.FC<CarouselProps> = ({ movies }) => {
           <img 
             src={leftArrow} 
             alt="" 
-            className="h-24 cursor-pointer" 
+            className="px-4 h-6 lg:px-2 lg:h-8 cursor-pointer" 
           />
         </button>
       </div>
@@ -82,7 +82,7 @@ const Carousel: React.FC<CarouselProps> = ({ movies }) => {
           <img 
             src={rightArrow} 
             alt=""
-            className="h-24 cursor-pointer" 
+            className="px-4 h-6 lg:px-2 lg:h-8 cursor-pointer" 
           />
         </button>
       </div>

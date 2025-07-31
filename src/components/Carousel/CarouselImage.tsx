@@ -47,7 +47,7 @@ const CarouselImage: React.FC<CarouselImageProps> = ({
       <div className={handleImageSize()}>
         <Link to={`/movie/${id}`}>
           <img
-            src={`https://image.tmdb.org/t/p/w500/${poster}`}
+            src={`https://image.tmdb.org/t/p/w185/${poster}`}
             alt=""
           />
         </Link>
