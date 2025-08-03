@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTopRated, getPopular } from "../services/TMDB_API";
 import Carousel from "../components/Carousel/Carousel";
+import MovieCard from "../components/Carousel/Cards/MovieCard";
 
 const HomePage = () => {
 
@@ -16,8 +17,19 @@ const HomePage = () => {
 
   return (
     <>
-      {popularmovies && <Carousel movies={popularmovies.results} />}
-      {ratedmovies && <Carousel movies={ratedmovies.results} />}
+      {popularmovies && (
+        <Carousel 
+          data={popularmovies.results}
+          Card={MovieCard}
+        />
+      )}
+
+      {ratedmovies && (
+        <Carousel 
+          data={ratedmovies.results}
+          Card={MovieCard}
+        />
+      )}
     </>
   )
 }
