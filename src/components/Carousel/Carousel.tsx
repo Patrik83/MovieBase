@@ -1,88 +1,94 @@
 import { useRef, useState, useEffect } from "react";
-import type { Movie } from "../../types/Movie.types";
-import CarouselImage from "./CarouselImage";
 import leftArrow from "../../assets/icons/left-arrow.svg";
 import rightArrow from "../../assets/icons/right-arrow.svg";
 
-interface CarouselProps {
-  movies: Movie[];
+interface CarouselProps<T> {
+  data: T[];
+  Card: React.ComponentType<{ item: T }>;
+  initialBig?: boolean;
 }
 
-const Carousel: React.FC<CarouselProps> = ({ movies }) => {
-  const [imageNumber, setImageNumber] = useState(0);
-  const [hasInteracted, setHasInteracted] = useState(false);
+const Carousel = <T,>({ data, Card, initialBig }: CarouselProps<T>) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [enableScrollMargin, setEnableScrollMargin] = useState(false);
   const imageRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const currentImage = imageRef.current[imageNumber];
+    const activeImage = imageRef.current[activeIndex];
 
-    if (currentImage) {
-      currentImage.scrollIntoView({
+    if (activeImage) {
+      activeImage.scrollIntoView({
         behavior: "smooth",
         inline: "start",
         block: "nearest",
       });
     }
-  }, [imageNumber]);
-
-  const resetInteraction = () => setHasInteracted(false);
-  const restoreInteraction = () => {
-    if (imageNumber > 0) {
-      setHasInteracted(true);
-    }
-  }
+  }, [activeIndex]);
 
   const prev = () => {
-    setHasInteracted(true)
-    setImageNumber(prev => prev - 1);
+    setEnableScrollMargin(false);
+    setActiveIndex(prev => prev - 1);
   };
 
   const next = () => {
-    setHasInteracted(true);
-    setImageNumber(prev => prev + 1);
+    setEnableScrollMargin(true);
+    setActiveIndex(prev => prev + 1);
   };
 
+  const handleImageSize = (index: number) => {
+    // use "img-big" on the first image as default, if initialBig is set to true
+    if (index === 0) {
+      return initialBig ? "img-big" : "img-normal";
+    }
+    // for all other images, only apply "img-big" to the active image
+    return index === activeIndex ? "img-big" : "img-normal";
+  };
+  
   return (
     <div className="carousel-wrapper">
-      <div className="flex h-full pt-25">
-        <button 
-          onClick={prev} 
-          disabled={imageNumber === 0} 
+      <div className="flex items-center justify-start sm:justify-end sm:w-28 h-full">
+        <button
+          onClick={prev}
+          disabled={activeIndex === 0}
           className="disabled:opacity-0"
         >
-          <img 
-            src={leftArrow} 
-            alt="" 
-            className="px-4 h-6 lg:px-2 lg:h-8 cursor-pointer" 
+          <img
+            src={leftArrow}
+            alt=""
+            className="px-4 h-10 lg:px-2 lg:h-8 cursor-pointer"
           />
         </button>
       </div>
-      
+
       <div className="carousel-list">
-        {movies.map((movie, index) => (
-          <CarouselImage 
-            key={movie.id}
-            id={movie.id}
-            index={index} 
-            imageRef={el => imageRef.current[index] = el} 
-            hasInteracted={hasInteracted}
-            imageNumber={imageNumber}
-            poster={movie.poster_path}
-            onInteractionReset={resetInteraction}
-            onInteractionRestore={restoreInteraction}
-          />
+        {data.map((item, index) => (
+          <div 
+            key={index}
+            ref={(el) => { imageRef.current[index] = el }}
+            className={`${
+              // Apply a scroll margin when scrolling forward past the previous image
+              enableScrollMargin && activeIndex > 1
+                ? "scroll-ml-[70px]" // scrolling forward: compensate for image size difference
+                : "scroll-ml-[0px]"  // scrolling backward: no margin needed
+            }`}
+          >
+            <div className={handleImageSize(index)}>
+              <Card item={item} />
+            </div>
+          </div>  
         ))}
       </div>
 
-      <div className="flex h-full pt-25">
-        <button onClick={next} 
-          disabled={imageNumber === 19} 
+      <div className="flex items-center justify-end sm:justify-start sm:w-48 h-full">
+        <button
+          onClick={next}
+          disabled={activeIndex === data.length - 1}
           className="disabled:opacity-0"
         >
-          <img 
-            src={rightArrow} 
+          <img
+            src={rightArrow}
             alt=""
-            className="px-4 h-6 lg:px-2 lg:h-8 cursor-pointer" 
+            className="px-4 h-10 lg:px-2 lg:h-8 cursor-pointer"
           />
         </button>
       </div>
