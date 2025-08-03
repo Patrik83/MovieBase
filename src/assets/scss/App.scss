@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: end;
-  height: 300px;
+  height: 400px;
 
   .carousel-list {
     display: flex;
@@ -16,7 +16,7 @@
     align-items: flex-end;
 
     div {
-      scroll-margin-left: 120px;
+      //scroll-margin-left: 120px;
 
       > div {
         transition-duration: 300ms;
@@ -31,12 +31,12 @@
 
     .img-big {
       width: 250px;
-      height: 300px;
+      height: 400px;
     }
   
     .img-normal {
-      width: 150px;
-      height: 200px;
+      width: 180px;
+      height: 300px;
     }
   }
 }
