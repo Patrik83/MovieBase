@@ -16,21 +16,20 @@ const HomePage = () => {
   })
 
   return (
-    <>
+    <div className="flex flex-col gap-10">
       {popularmovies && (
         <Carousel 
           data={popularmovies.results}
           Card={MovieCard}
         />
       )}
-
       {ratedmovies && (
         <Carousel 
           data={ratedmovies.results}
           Card={MovieCard}
         />
       )}
-    </>
+    </div>
   )
 }
 
