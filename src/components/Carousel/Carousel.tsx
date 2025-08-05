@@ -46,16 +46,16 @@ const Carousel = <T,>({ data, Card, initialBig }: CarouselProps<T>) => {
   
   return (
     <div className="carousel-wrapper">
-      <div className="flex items-center justify-start sm:justify-end sm:w-28 h-full">
+      <div className={`${initialBig ? "absolute bottom-1/2 -left-10" : "absolute bottom-56 -left-"}`}>
         <button
           onClick={prev}
           disabled={activeIndex === 0}
-          className="disabled:opacity-0"
+          className="disabled:opacity-50"
         >
           <img
             src={leftArrow}
             alt=""
-            className="px-4 h-10 lg:px-2 lg:h-8 cursor-pointer"
+            className="px-2 h-6 lg:px-2 lg:h-8 cursor-pointer"
           />
         </button>
       </div>
@@ -68,7 +68,7 @@ const Carousel = <T,>({ data, Card, initialBig }: CarouselProps<T>) => {
             className={`${
               // Apply a scroll margin when scrolling forward past the previous image
               enableScrollMargin && activeIndex > 1
-                ? "scroll-ml-[70px]" // scrolling forward: compensate for image size difference
+                ? "scroll-ml-[40px]" // scrolling forward: compensate for image size difference
                 : "scroll-ml-[0px]"  // scrolling backward: no margin needed
             }`}
           >
@@ -79,7 +79,7 @@ const Carousel = <T,>({ data, Card, initialBig }: CarouselProps<T>) => {
         ))}
       </div>
 
-      <div className="flex items-center justify-end sm:justify-start sm:w-48 h-full">
+      <div className={`${initialBig ? "absolute bottom-1/2 -right-10" : "absolute bottom-56 -right-12"}`}>
         <button
           onClick={next}
           disabled={activeIndex === data.length - 1}
@@ -88,7 +88,7 @@ const Carousel = <T,>({ data, Card, initialBig }: CarouselProps<T>) => {
           <img
             src={rightArrow}
             alt=""
-            className="px-4 h-10 lg:px-2 lg:h-8 cursor-pointer"
+            className="px-2 h-6 lg:px-2 lg:h-8 cursor-pointer"
           />
         </button>
       </div>
