@@ -15,34 +15,33 @@ const PersonPage = () => {
   return (
     <>
       {person && (
-        <>
-          <div className="sm:grid grid-cols-12 lg:mt-10">
-
-            <div className="col-span-4">
+        <div className="flex flex-col">
+          <div className="mt-10 mx-6 flex flex-col items-center sm:flex-row lg:flex-row gap-5">
+            
+            <div className="max-w-[270px]">
               <Carousel 
                 data={person.images.profiles}
-                Card={PersonCard} 
+                Card={PersonCard}
                 initialBig={true}
               />
             </div>
             
-            <div className="px-3 pt-5 sm:col-span-8 sm:px-0 sm:pt-0">
-              <h2 className="font-bolt text-center sm:text-left text-gray-300 text-2xl">About</h2>
-              <p className="mt-5 text-sm sm:text-base text-gray-300">{person.biography}</p>
+            <div className="py-4 h-100 overflow-y-auto ml-6">
+              <h2 className="font-bolt text-gray-300 text-4xl">{person.name}</h2>
+              <p className="py-4 text- text-gray-300">{person.biography}</p>
             </div>
-          </div>  
-              
-          <div className="sm:grid grid-cols-12 lg:mt-10">
-            <div className="sm:col-span-12 sm:col-start-1">
-              <h2 className="px-3 text-center sm:text-left sm:pl-12 mt-5 font-bolt text-gray-300 text-2xl lg:text-5xl">Movies</h2>
-
+          </div>
+          
+          <div className="py-10 lg:mx-6">
+            <h1 className="text-gray-300 text-4xl px-2 py-4">Movies</h1>
+            <div>
               <Carousel 
                 data={person.credits.cast}
                 Card={MovieCard}
               />
             </div>
           </div>
-        </>
+        </div>
       )}
     </>
   )
