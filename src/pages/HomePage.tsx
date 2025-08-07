@@ -18,16 +18,21 @@ const HomePage = () => {
   return (
     <div className="flex flex-col gap-10">
       {popularmovies && (
-        <Carousel 
-          data={popularmovies.results}
-          Card={MovieCard}
-        />
+        <div className="h-[320px]">
+          <Carousel 
+            data={popularmovies.results}
+            Card={MovieCard}
+          />
+        </div>
       )}
+      
       {ratedmovies && (
-        <Carousel 
-          data={ratedmovies.results}
-          Card={MovieCard}
-        />
+        <div className="h-[320px]">
+          <Carousel 
+            data={ratedmovies.results}
+            Card={MovieCard}
+          />
+        </div>
       )}
     </div>
   )
