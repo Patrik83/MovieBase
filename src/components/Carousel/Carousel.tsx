@@ -4,13 +4,12 @@ import rightArrow from "../../assets/icons/right-arrow.svg";
 
 interface CarouselProps<T> {
   data: T[];
-  Card: React.ComponentType<{ item: T }>;
+  Card: React.ComponentType<{ item: T; size: string }>;
   initialBig?: boolean;
 }
 
 const Carousel = <T,>({ data, Card, initialBig }: CarouselProps<T>) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [enableScrollMargin, setEnableScrollMargin] = useState(false);
   const imageRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
@@ -26,27 +25,26 @@ const Carousel = <T,>({ data, Card, initialBig }: CarouselProps<T>) => {
   }, [activeIndex]);
 
   const prev = () => {
-    setEnableScrollMargin(false);
     setActiveIndex(prev => prev - 1);
   };
 
   const next = () => {
-    setEnableScrollMargin(true);
     setActiveIndex(prev => prev + 1);
   };
-
-  const handleImageSize = (index: number) => {
-    // use "img-big" on the first image as default, if initialBig is set to true
-    if (index === 0) {
-      return initialBig ? "img-big" : "img-normal";
-    }
-    // for all other images, only apply "img-big" to the active image
-    return index === activeIndex ? "img-big" : "img-normal";
-  };
   
+  // optional function that makes the active images slightly larger when navigating the carousel
+  const handleImageSize = (index: number) => {
+    const isBig = index === 0 ? initialBig : index === activeIndex;
+  
+    return isBig 
+      // hardcoded image sizes for responsiveness
+      ? "w-[172px] h-[263px] lg:w-[216px] lg:h-[320px]" 
+      : "w-[147px] h-[222px] lg:w-[184px] lg:h-[270px]";
+  };
+
   return (
-    <div className="carousel-wrapper">
-      <div className={`${initialBig ? "absolute bottom-1/2 -left-10" : "absolute bottom-56 -left-"}`}>
+    <div className="carousel-wrapper relative h-[263px] lg:h-[320px]">
+      <div className="absolute top-1/2 -translate-y-1/2 -left-10">
         <button
           onClick={prev}
           disabled={activeIndex === 0}
@@ -59,27 +57,22 @@ const Carousel = <T,>({ data, Card, initialBig }: CarouselProps<T>) => {
           />
         </button>
       </div>
-
-      <div className="carousel-list">
+  
+      <div className="carousel-list flex space-x-4 overflow-x-auto">
         {data.map((item, index) => (
-          <div 
+          <div
             key={index}
             ref={(el) => { imageRef.current[index] = el }}
-            className={`${
-              // Apply a scroll margin when scrolling forward past the previous image
-              enableScrollMargin && activeIndex > 1
-                ? "scroll-ml-[40px]" // scrolling forward: compensate for image size difference
-                : "scroll-ml-[0px]"  // scrolling backward: no margin needed
-            }`}
           >
-            <div className={handleImageSize(index)}>
-              <Card item={item} />
-            </div>
-          </div>  
+            <Card
+              item={item}
+              size={handleImageSize(index)}
+            />
+          </div>
         ))}
       </div>
-
-      <div className={`${initialBig ? "absolute bottom-1/2 -right-10" : "absolute bottom-56 -right-12"}`}>
+  
+      <div className="absolute top-1/2 -translate-y-1/2 -right-10">
         <button
           onClick={next}
           disabled={activeIndex === data.length - 1}
@@ -93,7 +86,7 @@ const Carousel = <T,>({ data, Card, initialBig }: CarouselProps<T>) => {
         </button>
       </div>
     </div>
-  );
+  );  
 };
 
 export default Carousel;
