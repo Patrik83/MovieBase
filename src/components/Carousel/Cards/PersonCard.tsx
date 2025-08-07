@@ -9,7 +9,7 @@ const PersonCard: React.FC<PersonCardProps> = ({ item }) => {
     <img
       src={`https://image.tmdb.org/t/p/w342/${item.file_path}`}
       alt=""
-      className="mx-auto sm:mx-0 px-3 w-72 h-auto lg:w-100"
+      className={`block px-4 w-[216px] h-[320px] md:w-[270px] md:h-[400px] lg:w-[324px] lg:h-[470px]`}
     />
   )
 }
