@@ -39,7 +39,7 @@ const Navigation = () => {
 
         {isSubMenuOpen && (
           <div className="hidden lg:block w-full absolute pt-1 z-10">
-            <GenreList />
+            <GenreList onGenreSelect={handleCloseMenu} />
           </div>
         )}
       </div>
@@ -76,7 +76,7 @@ const Navigation = () => {
                 />
               </div>
               
-              {isSubMenuOpen && <GenreList />}
+              {isSubMenuOpen && <GenreList onGenreSelect={handleCloseMenu} />}
             </div>
           </div>
         )}
