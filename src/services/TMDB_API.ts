@@ -70,3 +70,13 @@ export const getPersonDetails = async (personId: number) => {
   });
   return res.data;
 }
+
+export const getByGenre = async (movieId: number, pageNumber: number) => {
+  const res = await instance.get<PageResult>("/discover/movie", {
+    params: {
+      with_genres: movieId,
+      page: pageNumber,
+    }
+  });
+  return res.data;
+}
