@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
 import burger from "../../assets/icons/menu-burger.svg";
+import arrowDown from "../../assets/icons/down-arrow.svg";
+import arrowUp from "../../assets/icons/top-arrow.svg";
 import GenreList from "./GenreList";
 import Search from "../Search/Search";
 
@@ -15,8 +17,8 @@ const Navigation = () => {
   
   return (
     <nav className="relative">
-      <div className="fixed w-full z-10 dark:bg-black dark:text-white">
-        <div className="max-w-screen-xl mx-auto px-2 sm:px-0 flex items-center justify-between min-h-14">
+      <div className="fixed w-full z-10 dark:bg-black text-gray-300">
+        <div className="max-w-screen-xl mx-auto px-4 flex items-center justify-between min-h-14">
           <div className="lg:hidden min-w-8">
             <img
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -44,12 +46,36 @@ const Navigation = () => {
 
       <div className="pt-16">
         {isMenuOpen && (
-          <div className="fixed w-full flex flex-col gap-1 lg:hidden bg-gray-300 px-4 pt-3 z-20">
-            <NavLink to={"/popular"} onClick={handleCloseMenu}>Most popular movies</NavLink>
-            <NavLink to={"/rated"} onClick={handleCloseMenu}>Highest rated movies</NavLink>
-            <span className="cursor-pointer" onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}>Browse movies by genre</span>
+          <div className="fixed w-80 sm:w-1/2 flex flex-col gap-2 lg:hidden bg-black px-4 pt-3 z-20 h-full">
+            <NavLink 
+              to={"/popular"} 
+              onClick={handleCloseMenu} 
+              className="bg-neutral-900 text-gray-300 text-sm py-3 px-3 rounded-md"
+            >
+              Most popular movies
+            </NavLink>
 
-            <div className="px-3 pt-1 pb-3">
+            <NavLink 
+              to={"/rated"} 
+              onClick={handleCloseMenu} 
+              className="bg-neutral-900 text-gray-300 text-sm py-3 px-3 rounded-md"
+            >
+              Highest rated movies
+            </NavLink>
+            
+            <div 
+              onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}
+              className="cursor-pointer bg-neutral-900 text-gray-300 py-3 px-3 rounded-md"
+            >
+              <div className="flex justify-between items-center">
+                <p className="text-sm">Browse movies by genre</p>
+                <img 
+                  src={isSubMenuOpen ? arrowUp : arrowDown} 
+                  alt=""
+                  className="h-3" 
+                />
+              </div>
+              
               {isSubMenuOpen && <GenreList />}
             </div>
           </div>

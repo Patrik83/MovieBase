@@ -18,10 +18,10 @@ const GenreList = () => {
       {genres && (
       <div className="w-full bg-transparent">
         <div
-          className="max-w-screen-xl mx-auto flex flex-wrap justify-start gap-4 text-center pb-2 pt-2 bg-gray-500"
+          className="max-w-screen-xl h-[500px] lg:h-auto overflow-y-auto mx-auto flex flex-col lg:flex-row lg:flex-wrap justify-start gap-5 lg:gap-4 px-8 lg:px-0 lg:text-center py-5 lg:bg-black"
         >
           {genres.map((genre) => (
-            <div key={genre.id} className="basis-28">{genre.name}</div>
+            <div key={genre.id} className="text-sm lg:text-base lg:basis-28">{genre.name}</div>
           ))}
         </div>
       </div>
